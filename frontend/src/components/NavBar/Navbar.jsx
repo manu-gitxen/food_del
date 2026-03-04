@@ -3,11 +3,11 @@ import "./Navbar.css"
 import { assets } from '../../assets/frontend_assets/assets'
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({setShowLogin}) => {
     const [menu,setMenu] = useState("home");
   return (
     <div className='navbar'>
-        <img src={assets.logo} alt="logo"  className='logo'/>
+        <Link to="/" > <img src={assets.logo} alt="logo"  className='logo'/></Link>
         <ul className='navbar-menu'>
             <Link to="/" className={menu === "home"?"active":""}onClick={()=>{setMenu("home")}}>Home</Link>
             <a href='#explore-menu' className={menu === "menu"?"active":""}onClick={()=>{setMenu("menu")}}>Menu</a>
@@ -17,10 +17,10 @@ const Navbar = () => {
         <div className="navbar-right">
             <img src={assets.search_icon} alt="search icon " />
             <div className="navbar-search-icon">
-                <img src={assets.basket_icon} alt="" />
+                <Link to="/cart"><img src={assets.basket_icon} alt="" /></Link>
                 <div className="dot"></div>
             </div>
-            <button>Sign In</button>
+            <button onClick={() => setShowLogin(true)}>Sign In</button>
         </div>
       
     </div>
