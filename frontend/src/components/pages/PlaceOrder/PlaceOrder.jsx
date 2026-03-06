@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./PlaceOrder.css"
+import { StoreContext } from '../../../Context/StoreContext'
 
 const PlaceOrder = () => {
+  const {getTotalCartAmount}=useContext(StoreContext)
   return (
-    <form className='place-order'>
+    <div className='place-order-page'>
+      <h1>Place Order</h1>
+      <form className='place-order'>
       <div className="place-order-left">
         <p className='title'>Delivery Information</p>
         <div className="multi-fields">
@@ -22,9 +26,34 @@ const PlaceOrder = () => {
         </div>
         <input type="text" name="" id="" placeholder='Phone' />
       </div>
-      <div className="place-order-right"></div>
+      <div className="place-order-right">
+        <div className="cart-total">
+                <h2>Cart Total</h2>
+                <div>
+                    <div className="cart-total-details">
+                        <p>Subtotal</p>
+                        <p>${getTotalCartAmount()}</p>
+                    </div>
+                    <hr />
+                    <div className="cart-total-details">
+                        <p>Delevery Fee</p>
+                        <p>${getTotalCartAmount()===0?0:2}</p>
+                    </div>
+                    <hr />
+                    <div className="cart-total-details">
+                        <p>Total</p>
+                        <p>${getTotalCartAmount()===0?0:getTotalCartAmount()+2}</p>
+                    </div>
+                    
+                </div>
+                
+                <button >PROCEED TO PAYMENT</button>
+
+            </div>
+      </div>
       
     </form>
+    </div>
   )
 }
 
